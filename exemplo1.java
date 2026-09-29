@@ -2,11 +2,12 @@ package validacao;
 
 public class ValidadorCPF {
 
-    // =========================================================================
+    
     // 1. MÉTODO PÚBLICO (public)
     // Acessível por QUALQUER classe do sistema. Serve como interface principal.
-    // =========================================================================
+    
     public boolean validar(String cpf) {
+       
         // Passo A: Limpa o CPF usando o método privado de suporte
         String cpfLimpo = limparCPF(cpf);
 
@@ -19,11 +20,9 @@ public class ValidadorCPF {
         return calcularDigitosVerificadores(cpfLimpo);
     }
 
-    // =========================================================================
-    // 2. MÉTODOS PRIVADOS (private)
-    // Acessíveis APENAS dentro desta classe. Protegem a lógica interna.
-    // =========================================================================
     
+    // 2. MÉTODOS PRIVADOS (private)
+    // Acessíveis APENAS dentro desta classe. Protegem a lógica interna.    
     // Remove caracteres especiais (pontos, traços, espaços)
     private String limparCPF(String cpf) {
         if (cpf == null) return null;
@@ -35,11 +34,10 @@ public class ValidadorCPF {
         return cpf.matches("(\\d)\\1{10}");
     }
 
-    // =========================================================================
+    
     // 3. MÉTODO PROTEGIDO (protected)
     // Acessível na MESMA pasta/pacote E por SUBCLASSES (herança) em outros pacotes.
     // Permite que classes filhas aproveitem ou sobrescrevam o algoritmo de cálculo.
-    // =========================================================================
     protected boolean calcularDigitosVerificadores(String cpf) {
         int digito1 = calcularDigito(cpf.substring(0, 9), 10);
         int digito2 = calcularDigito(cpf.substring(0, 9) + digito1, 11);
